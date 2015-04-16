@@ -1,2 +1,7 @@
 @import "css/reset.css";
 @import "css/normalize.css";
+
+body{
+	color: #999;
+	background:#f1f1f1;
+}
