@@ -1,16 +1,14 @@
 <html>
 <head>
 	<title>Moises' To-Do List</title>
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<link rel="stylesheet" type="text/css" href="css/normalize.css">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <div class="wrap">
 	<div class="task-list">
 		<ul>
 		<?php require("includes/connect.php"); 
-		$mysqli = new mysqli('localhost','root','root', 'tasks');
+		$mysqli = new mysqli('localhost','root','root', 'task');
 		$query = "SELECT * FROM tasks ORDER BY date ASC, time ASC";
 		if($result = $mysqli->query($query)){
 			$numrows = $result->num_rows;
@@ -34,17 +32,17 @@
 </form>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	add_task();//caling the add task function
 	function add_task(){
-		$('.add-new-task').submit(function{
+		$('.add-new-task').submit(function(){
 			var new_task = $('.add-new-task input[new=new-task').val();
 		
 			if(new_task != ''){
 				$.post('includes/add-task.php', {task: new_task}, function(data){
-					$('add-new-task input[name=new-task']).val();
-					$(data).appendTO('task-list ul').hide().fadeIn();
+					$('add-new-task input[name=new-task]').val();
+					$(data).appendTO('.task-list ul').hide().fadeIn();
 				});
 			}
 			return false;
